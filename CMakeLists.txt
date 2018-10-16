@@ -6,10 +6,7 @@ else()
    project(kkmeans VERSION 0.0.1)
 endif()
 
-include_directories(${dlib_INCLUDE_DIRS})
-link_directories(${DLIB_LIBRARY_DIRS})
 find_package(dlib REQUIRED)
-
 
 add_executable(kkmeans main.cpp)
 

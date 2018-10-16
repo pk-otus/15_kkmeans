@@ -9,9 +9,8 @@ addons:
 before_script:
   - export CXX=/usr/bin/g++-7
   - export CC=/usr/bin/gcc-7
-
-  - sudo apt-get install libdlib-dev -y
   - sudo apt-get install libopenblas-dev -y
+  - sudo apt-get install libdlib-dev -y
 script: 
   - cmake .
   - cmake --build .
