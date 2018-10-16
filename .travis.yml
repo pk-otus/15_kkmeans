@@ -1,0 +1,24 @@
+language: cpp
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+	  - sourceline: 'deb http://archive.ubuntu.com/ubuntu xenial main universe'
+    packages:
+      - g++-7
+before_script:
+  - export CXX=/usr/bin/g++-7
+  - export CC=/usr/bin/gcc-7
+
+  - sudo apt-get install libdlib-dev -y
+  - sudo apt-get install libopenblas-dev -y
+script: 
+  - cmake .
+  - cmake --build .
+  - cmake --build . --target package  
+deploy: 
+  - provider: script
+    skip_cleanup: true
+    script:       
+     - curl -T kkmeans-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -upk-otus:$BINTRAY_API_KEY "https://api.bintray.com/content/pk-otus/OTUS/kkmeans/$TRAVIS_BUILD_NUMBER/kkmeans.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1" 
+  
