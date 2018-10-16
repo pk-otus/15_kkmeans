@@ -6,8 +6,8 @@ addons:
       - sourceline: 'deb http://archive.ubuntu.com/ubuntu xenial main universe'
     packages:
       - g++-7
-	  - libdlib-dev
-	  - libopenblas-dev
+      - libdlib-dev
+      - libopenblas-dev
 before_script:
   - export CXX=/usr/bin/g++-7
   - export CC=/usr/bin/gcc-7
