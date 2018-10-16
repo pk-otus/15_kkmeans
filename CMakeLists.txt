@@ -6,7 +6,7 @@ else()
    project(kkmeans VERSION 0.0.1)
 endif()
 
- find_package(dlib CONFIG REQUIRED)
+ find_package(dlib REQUIRED)
      
 add_executable(kkmeans main.cpp)
 
