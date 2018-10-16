@@ -3,12 +3,12 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-      - sourceline: 'deb http://archive.ubuntu.com/ubuntu xenial main universe'
     packages:
       - g++-7
-      - libdlib-dev
-      - libopenblas-dev
 before_script:
+  - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get install libopenblas-dev libdlib-dev
+
   - export CXX=/usr/bin/g++-7
   - export CC=/usr/bin/gcc-7
 
