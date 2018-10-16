@@ -9,6 +9,7 @@ addons:
       - libdlib-dev
       - libopenblas-dev
 before_script:
+  - which libdlib-dev
   - export CXX=/usr/bin/g++-7
   - export CC=/usr/bin/gcc-7
   
