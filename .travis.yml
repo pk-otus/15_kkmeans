@@ -3,7 +3,7 @@ addons:
   apt:
     sources:
       - ubuntu-toolchain-r-test
-	  - sourceline: 'deb http://archive.ubuntu.com/ubuntu xenial main universe'
+      - sourceline: 'deb http://archive.ubuntu.com/ubuntu xenial main universe'
     packages:
       - g++-7
 before_script:
