@@ -6,8 +6,10 @@ else()
    project(kkmeans VERSION 0.0.1)
 endif()
 
-find_package(dlib REQUIRED)
+# find_package(dlib REQUIRED)
 
+add_executable(generate_clusters generate_clusters.cpp)
+add_executable(generate_sky generate_sky.cpp)
 add_executable(kkmeans main.cpp)
 
 set_target_properties(kkmeans PROPERTIES
@@ -16,17 +18,22 @@ set_target_properties(kkmeans PROPERTIES
 )
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-	set_target_properties(kkmeans PROPERTIES COMPILE_OPTIONS -W3)
+	set_target_properties(kkmeans generate_clusters generate_sky PROPERTIES COMPILE_OPTIONS -W3)
+	target_link_libraries(generate_sky dlib::dlib)
+	target_link_libraries(generate_clusters dlib::dlib)
 	target_link_libraries(kkmeans dlib::dlib)
 else()
 	find_package(BLAS REQUIRED )
 
-	set_target_properties(kkmeans PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
-	target_link_libraries(kkmeans pthread dlib openblas)
+	set_target_properties(kkmeans generate_clusters generate_sky PROPERTIES COMPILE_OPTIONS -Wpedantic -Wall -Wextra)
+	target_link_libraries(generate_sky openblas)
+	target_link_libraries(generate_clusters openblas)
+	target_link_libraries(kkmeans pthread openblas)
 endif()
 
 install(TARGETS kkmeans RUNTIME DESTINATION bin)
 install(FILES kkmeans_ex.txt DESTINATION bin)
+install(FILES kkmeans_sky.txt DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
